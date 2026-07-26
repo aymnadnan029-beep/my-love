@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️ يا حبيبتي رويدا ❤️</title>
+
+<title>إلى رويدا ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -11,291 +17,608 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Tahoma,sans-serif;
+font-family:'Cairo',sans-serif;
 }
 
 body{
-background:#090b18;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+
+background:linear-gradient(to bottom,#01020f,#071a3d,#000);
+
 overflow:hidden;
+
+height:100vh;
+
 color:white;
+
 }
 
-.stars{
-position:fixed;
-top:0;
-left:0;
+#intro{
+
+position:absolute;
+
 width:100%;
+
 height:100%;
-background-image:
-radial-gradient(white 1px,transparent 1px);
-background-size:40px 40px;
-animation:starsMove 25s linear infinite;
-opacity:.35;
-}
 
-@keyframes starsMove{
-0%{transform:translateY(0);}
-100%{transform:translateY(40px);}
-}
+display:flex;
 
-.box{
-position:relative;
-z-index:5;
-width:90%;
-max-width:520px;
-padding:30px;
-border-radius:20px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(10px);
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
 text-align:center;
+
+padding:30px;
+
+transition:1s;
+
 }
 
-h1{
-color:#ff8fc6;
+#intro h1{
+
+font-size:42px;
+
 margin-bottom:20px;
+
+animation:fade 2s;
+
 }
 
-p{
-font-size:20px;
+#intro p{
+
+font-size:22px;
+
+max-width:700px;
+
 line-height:1.8;
+
+opacity:.9;
+
 }
 
 button{
-margin-top:25px;
-padding:15px 35px;
+
+margin-top:35px;
+
+padding:15px 40px;
+
 border:none;
-border-radius:15px;
-background:#ff5fa2;
-color:white;
-font-size:18px;
+
+border-radius:40px;
+
+font-size:20px;
+
 cursor:pointer;
+
+background:#FFD700;
+
+color:#000;
+
+font-weight:bold;
+
 transition:.3s;
+
 }
 
 button:hover{
-transform:scale(1.05);
+
+transform:scale(1.08);
+
 }
 
-.hidden{
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(-40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+canvas{
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+z-index:-1;
+
+}
+
+#game{
+
 display:none;
-}
 
-#game button{
-display:block;
 width:100%;
-margin:12px 0;
+
+height:100%;
+
+position:absolute;
+
 }
 
-#message{
-margin-top:20px;
+.star{
+
+position:absolute;
+
+width:18px;
+
+height:18px;
+
+background:white;
+
+border-radius:50%;
+
+cursor:pointer;
+
+box-shadow:0 0 15px white;
+
+animation:blink 2s infinite;
+
+transition:.4s;
+
+}
+
+.star:hover{
+
+transform:scale(1.4);
+
+}
+
+@keyframes blink{
+
+50%{
+
+opacity:.3;
+
+}
+
+}
+
+.popup{
+
+position:absolute;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+background:#111827;
+
+padding:30px;
+
+width:90%;
+
+max-width:450px;
+
+border-radius:20px;
+
+display:none;
+
+text-align:center;
+
+box-shadow:0 0 40px gold;
+
+}
+
+.popup h2{
+
+color:gold;
+
+margin-bottom:20px;
+
+}
+
+.popup p{
+
 font-size:22px;
+
+line-height:1.8;
+
+}
+
+#ending{
+
+display:none;
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+text-align:center;
+
+padding:30px;
+
+}
+
+#ending h1{
+
+font-size:70px;
+
+margin-bottom:20px;
+
+}
+
+#ending p{
+
+font-size:28px;
+
 line-height:2;
-white-space:pre-wrap;
-text-align:right;
+
+max-width:800px;
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="stars"></div>
+<canvas id="sky"></canvas>
 
-<div class="box">
+<div id="intro">
 
-<div id="start">
+<h1>
 
-<h1>❤️ يا حبيبتي رويدا ❤️</h1>
+هذه ليست مجرد صفحة...
+
+إنها رحلة صنعتها خصيصًا لك يا رويدا ❤️
+
+</h1>
 
 <p>
 
-في لعبة صغيرة...
-ولو عرفتي جوابها الصحيح،
-رح توصلي لرسالة مكتوبة من كل قلبي إلك.
+كل نجمة في السماء تخبئ رسالة صغيرة...
+
+اضغطي على جميع النجوم حتى تصلي إلى النهاية.
 
 </p>
 
-<button onclick="startGame()">
+<button onclick="startJourney()">
 
-ابدئي ❤️
+ابدئي الرحلة ✨
 
 </button>
 
 </div>
 
-<div id="game" class="hidden">
-
-<h2>مين أكثر شخص بحبك؟ ❤️</h2>
-
-<button onclick="wrong()">شخص مجهول</button>
-
-<button onclick="wrong()">أحمد</button>
-
-<button onclick="correct()">أنا ❤️</button>
+<div id="game">
 
 </div>
 
-<div id="count" class="hidden">
+<div class="popup" id="popup">
 
-<h2 id="counter">10</h2>
+<h2>💛 رسالة</h2>
 
-<p>جاري فتح الرسالة...</p>
+<p id="popupText"></p>
+
+<button onclick="closePopup()">
+
+إغلاق
+
+</button>
 
 </div>
 
-<div id="message" class="hidden"></div>
+<div id="ending">
+
+<h1>🌙</h1>
+
+<p>
+
+قد تكون السماء مليئة بالنجوم...
+
+لكن النجمة التي أبحث عنها كل ليلة...
+
+هي أنتِ يا رويدا ❤️
+
+<br><br>
+
+أحبك اليوم...
+
+وغدًا...
+
+وكل يوم يأتي بعده.
+
+</p>
+
+<br>
+
+<button onclick="location.reload()">
+
+إعادة الرحلة
+
+</button>
 
 </div>
-
+</body>
 <script>
-function startGame(){
 
-document.getElementById("start").classList.add("hidden");
+// =========================
+// الرسائل داخل النجوم
+// =========================
 
-document.getElementById("game").classList.remove("hidden");
+const messages = [
 
-}
+"أحب ابتسامتك لأنها تجعل يومي أجمل ❤️",
 
-function wrong(){
+"وجودك في حياتي أجمل هدية حصلت عليها.",
 
-alert("😅 مو هي الإجابة... جربي مرة ثانية ❤️");
+"كل مرة أتحدث معك أشعر أن الدنيا أصبحت أجمل.",
 
-}
+"أنتِ راحتي وسكينتي.",
 
-function correct(){
+"لو عاد بي الزمن لاخترتك في كل مرة.",
 
-document.getElementById("game").classList.add("hidden");
+"أنتِ أجمل صدفة حدثت في حياتي.",
 
-document.getElementById("count").classList.remove("hidden");
+"أحبك أكثر مما تستطيع الكلمات وصفه."
 
-let n=10;
+];
 
-document.getElementById("counter").innerHTML=n;
+let clickedStars = 0;
 
-let timer=setInterval(function(){
+// =========================
+// بداية الرحلة
+// =========================
 
-n--;
+function startJourney(){
 
-document.getElementById("counter").innerHTML=n;
+document.getElementById("intro").style.display="none";
 
-if(n<=0){
+document.getElementById("game").style.display="block";
 
-clearInterval(timer);
-
-document.getElementById("count").classList.add("hidden");
-
-document.getElementById("message").classList.remove("hidden");
-
-showMessage();
+createStars();
 
 }
 
-},1000);
+// =========================
+// إنشاء النجوم
+// =========================
+
+function createStars(){
+
+const game=document.getElementById("game");
+
+messages.forEach((message,index)=>{
+
+const star=document.createElement("div");
+
+star.className="star";
+
+star.style.left=(Math.random()*90+5)+"%";
+
+star.style.top=(Math.random()*80+10)+"%";
+
+star.dataset.clicked="false";
+
+star.onclick=function(){
+
+if(star.dataset.clicked==="true") return;
+
+star.dataset.clicked="true";
+
+star.style.background="gold";
+
+star.style.boxShadow="0 0 25px gold";
+
+showMessage(message);
+
+clickedStars++;
+
+if(clickedStars===messages.length){
+
+setTimeout(showEnding,1200);
 
 }
 
-const text=`
-حبيبتي رويدا... ❤️
+};
 
-يمكن تكون الليلة مثل أي ليلة،
-لكن بالنسبة إلي مختلفة...
+game.appendChild(star);
 
-لأنك أول وآخر فكرة بتيجي على بالي.
-
-بحبك كتير حبيبتي،
-بعشقك وبعبدك.
-
-الله ما يحرمني منك،
-يا سبب فرحتي،
-ويا أجمل نعمة بحياتي.
-
-وبعرف إنه بعد فترة صغيرة،
-بإذن الله،
-رح يكون عنا بيت حلو ودافي،
-يجمعنا إحنا الاثنين،
-ونعيش فيه أجمل أيام عمرنا.
-
-بيت مليان حب،
-وراحة،
-وضحك،
-وكل زاوية فيه إلها ذكرى حلوة إلنا.
-
-وحبيبتي...
-بعدين رح يصير عنا ولدين حلوين،
-رحمة وأحمد.
-
-وتكون ضحكتهم مالية البيت،
-ونعيش سوا كل اللحظات
-اللي كنا نحلم فيها.
-
-أنتِ أجمل شيء صار بحياتي،
-وكل يوم بحبك أكثر
-من اليوم اللي قبله. ❤️
-
-`;
-let index=0;
-
-function showMessage(){
-
-if(index<text.length){
-
-document.getElementById("message").innerHTML+=text.charAt(index);
-
-index++;
-
-setTimeout(showMessage,35);
-
-}else{
-
-setInterval(createHeart,300);
+});
 
 }
 
-}
+// =========================
+// نافذة الرسالة
+// =========================
 
-function createHeart(){
+function showMessage(text){
 
-let heart=document.createElement("div");
+document.getElementById("popupText").innerHTML=text;
 
-heart.innerHTML="❤️";
-
-heart.style.position="fixed";
-
-heart.style.left=Math.random()*100+"vw";
-
-heart.style.top="-30px";
-
-heart.style.fontSize=(20+Math.random()*20)+"px";
-
-heart.style.pointerEvents="none";
-
-heart.style.zIndex="999";
-
-heart.style.transition="transform 6s linear, opacity 6s linear";
-
-document.body.appendChild(heart);
-
-setTimeout(function(){
-
-heart.style.transform="translateY(110vh)";
-
-heart.style.opacity="0";
-
-},50);
-
-setTimeout(function(){
-
-heart.remove();
-
-},6200);
+document.getElementById("popup").style.display="block";
 
 }
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none";
+
+}
+
+// =========================
+// النهاية
+// =========================
+
+function showEnding(){
+
+document.getElementById("game").style.display="none";
+
+document.getElementById("popup").style.display="none";
+
+document.getElementById("ending").style.display="flex";
+
+}
+
+// =========================
+// رسم النجوم بالخلفية
+// =========================
+
+const canvas=document.getElementById("sky");
+
+const ctx=canvas.getContext("2d");
+
+function resize(){
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+}
+
+resize();
+
+window.addEventListener("resize",resize);
+
+const backgroundStars=[];
+
+for(let i=0;i<350;i++){
+
+backgroundStars.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height,
+
+r:Math.random()*2,
+
+a:Math.random()
+
+});
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+backgroundStars.forEach(s=>{
+
+ctx.beginPath();
+
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+
+ctx.fillStyle="rgba(255,255,255,"+s.a+")";
+
+ctx.fill();
+
+s.a+=Math.random()*0.02-0.01;
+
+if(s.a<0.2)s.a=0.2;
+
+if(s.a>1)s.a=1;
+
+});
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
 
 </script>
 
 </body>
+
 </html>
+/* الشهاب */
+
+.shooting-star{
+
+position:absolute;
+
+width:3px;
+
+height:3px;
+
+background:white;
+
+border-radius:50%;
+
+box-shadow:0 0 20px white;
+
+animation:shoot 3s linear forwards;
+
+}
+
+@keyframes shoot{
+
+0%{
+
+transform:translate(0,0);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translate(-500px,500px);
+
+opacity:0;
+
+}
+
+}
+
+/* القلوب */
+
+.heart{
+
+position:absolute;
+
+font-size:24px;
+
+animation:fall 5s linear forwards;
+
+pointer-events:none;
+
+}
+
+@keyframes fall{
+
+0%{
+
+transform:translateY(-50px);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(120vh);
+
+opacity:0;
+
+}
+
+}
