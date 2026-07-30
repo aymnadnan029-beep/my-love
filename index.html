@@ -1,148 +1,80 @@
-const text = document.getElementById("text");
-const court = document.getElementById("court");
-const start = document.getElementById("start");
-const choices = document.getElementById("choices");
-const forgive = document.getElementById("forgive");
-const no = document.getElementById("no");
-const final = document.getElementById("final");
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
 
-// نص المحاكمة
-const lines = [
-    "⚖️ بدأت جلسة محكمة الحب...",
-    "",
-    "القاضي: هل يعترف المتهم بما فعل؟",
-    "",
-    "أيمن:",
-    "نعم... أعترف.",
-    "",
-    "أعترف أني أخطأت...",
-    "وأعترف أني زعلت أغلى إنسانة عندي.",
-    "",
-    "لكن...",
-    "ولا يوم كان قصدي أوجع قلبها.",
-    "",
-    "كل اللي أتمناه...",
-    "إنها تسمعني للآخر. ❤️"
-];
+    <meta charset="UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-let i = 0;
+    <title>محكمة الحب ❤️</title>
 
+    <link rel="stylesheet" href="style.css">
 
-// كتابة الكلام بالتدريج
-function typeLine() {
+</head>
 
-    if (i >= lines.length) {
 
-        choices.style.display = "flex";
+<body>
 
-        return;
 
-    }
+    <div class="container">
 
 
-    text.innerHTML += lines[i] + "<br>";
+        <h1>⚖️ محكمة الحب</h1>
 
-    court.classList.remove("hidden");
 
-    i++;
+        <button id="start">
+            ابدأ المحاكمة ❤️
+        </button>
 
 
-    setTimeout(typeLine, 1500);
 
-}
+        <div id="court" class="hidden">
 
+            <p id="text"></p>
 
+        </div>
 
-// زر البداية
-start.onclick = function () {
 
-    start.style.display = "none";
 
-    typeLine();
+        <div id="choices" style="display:none;">
 
-};
 
+            <button id="forgive">
+                أسامحك ❤️
+            </button>
 
 
-// زر الرفض يهرب
-no.addEventListener("mouseover", function () {
+            <button id="no">
+                لسه زعلانة 😢
+            </button>
 
-    const x = Math.random() * (window.innerWidth - 180);
-    const y = Math.random() * (window.innerHeight - 80);
 
+        </div>
 
-    no.style.position = "fixed";
 
-    no.style.left = x + "px";
 
-    no.style.top = y + "px";
+        <div id="final" style="display:none;">
 
-});
+            <h2>
+                تم الحكم بالحب ❤️
+            </h2>
 
+            <p>
+                شكراً لأنك سامحتيني يا رويدا،
+                وجودك أجمل شيء في حياتي ❤️
+            </p>
 
+        </div>
 
-// زر المسامحة
-forgive.addEventListener("click", function () {
 
-    choices.style.display = "none";
+    </div>
 
-    final.style.display = "block";
 
-    createHearts();
 
-});
+<script src="script.js"></script>
 
 
+</body>
 
-
-// صناعة القلوب
-function createHearts() {
-
-
-    for (let i = 0; i < 120; i++) {
-
-
-        setTimeout(function () {
-
-
-            let heart = document.createElement("div");
-
-
-            heart.className = "heart";
-
-
-            heart.innerHTML = "❤️";
-
-
-            heart.style.left = Math.random() * 100 + "vw";
-
-
-            heart.style.fontSize = 
-            (20 + Math.random() * 30) + "px";
-
-
-            heart.style.animationDuration = 
-            (3 + Math.random() * 3) + "s";
-
-
-
-            document.body.appendChild(heart);
-
-
-
-            setTimeout(function () {
-
-                heart.remove();
-
-            }, 6000);
-
-
-
-        }, i * 60);
-
-
-    }
-
-}
+</html>
