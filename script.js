@@ -6,26 +6,31 @@ const forgive = document.getElementById("forgive");
 const no = document.getElementById("no");
 const final = document.getElementById("final");
 
+
+// نص المحاكمة
 const lines = [
-"⚖️ بدأت جلسة محكمة الحب...",
-"",
-"القاضي: هل يعترف المتهم بما فعل؟",
-"",
-"أيمن:",
-"نعم... أعترف.",
-"",
-"أعترف أني أخطأت...",
-"وأعترف أني زعلت أغلى إنسانة عندي.",
-"",
-"لكن...",
-"ولا يوم كان قصدي أوجع قلبها.",
-"",
-"كل اللي أتمناه...",
-"إنها تسمعني للآخر. ❤️"
+    "⚖️ بدأت جلسة محكمة الحب...",
+    "",
+    "القاضي: هل يعترف المتهم بما فعل؟",
+    "",
+    "أيمن:",
+    "نعم... أعترف.",
+    "",
+    "أعترف أني أخطأت...",
+    "وأعترف أني زعلت أغلى إنسانة عندي.",
+    "",
+    "لكن...",
+    "ولا يوم كان قصدي أوجع قلبها.",
+    "",
+    "كل اللي أتمناه...",
+    "إنها تسمعني للآخر. ❤️"
 ];
+
 
 let i = 0;
 
+
+// كتابة الكلام بالتدريج
 function typeLine() {
 
     if (i >= lines.length) {
@@ -36,31 +41,37 @@ function typeLine() {
 
     }
 
+
     text.innerHTML += lines[i] + "<br>";
 
     court.classList.remove("hidden");
 
     i++;
 
+
     setTimeout(typeLine, 1500);
 
 }
 
+
+
+// زر البداية
 start.onclick = function () {
 
     start.style.display = "none";
 
     typeLine();
-  
 
 };
-// زر "لسه زعلانة" يهرب
 
-no.addEventListener("mouseover", () => {
+
+
+// زر الرفض يهرب
+no.addEventListener("mouseover", function () {
 
     const x = Math.random() * (window.innerWidth - 180);
-
     const y = Math.random() * (window.innerHeight - 80);
+
 
     no.style.position = "fixed";
 
@@ -71,9 +82,9 @@ no.addEventListener("mouseover", () => {
 });
 
 
-// عند الضغط على "أسامحك"
 
-forgive.addEventListener("click", () => {
+// زر المسامحة
+forgive.addEventListener("click", function () {
 
     choices.style.display = "none";
 
@@ -84,35 +95,53 @@ forgive.addEventListener("click", () => {
 });
 
 
-// إنشاء القلوب
 
-function createHearts(){
 
-    for(let i=0;i<120;i++){
+// صناعة القلوب
+function createHearts() {
 
-        setTimeout(()=>{
 
-            let heart=document.createElement("div");
+    for (let i = 0; i < 120; i++) {
 
-            heart.className="heart";
 
-            heart.innerHTML="❤️";
+        setTimeout(function () {
 
-            heart.style.left=Math.random()*100+"vw";
 
-            heart.style.fontSize=(20+Math.random()*30)+"px";
+            let heart = document.createElement("div");
 
-            heart.style.animationDuration=(3+Math.random()*3)+"s";
+
+            heart.className = "heart";
+
+
+            heart.innerHTML = "❤️";
+
+
+            heart.style.left = Math.random() * 100 + "vw";
+
+
+            heart.style.fontSize = 
+            (20 + Math.random() * 30) + "px";
+
+
+            heart.style.animationDuration = 
+            (3 + Math.random() * 3) + "s";
+
+
 
             document.body.appendChild(heart);
 
-            setTimeout(()=>{
+
+
+            setTimeout(function () {
 
                 heart.remove();
 
-            },6000);
+            }, 6000);
 
-        },i*60);
+
+
+        }, i * 60);
+
 
     }
 
