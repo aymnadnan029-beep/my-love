@@ -3,78 +3,217 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>محكمة الحب ❤️</title>
+<title>🌸 صباح الخير يا رويدا 🌸</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif;
+}
+
+body{
+
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(180deg,#6ec6ff,#b3e5fc,#fff8e1);
+
+}
+
+.cloud{
+
+position:absolute;
+background:white;
+border-radius:50px;
+opacity:.8;
+
+}
+
+.cloud::before{
+
+content:"";
+position:absolute;
+width:60px;
+height:60px;
+background:white;
+border-radius:50%;
+left:10px;
+top:-20px;
+
+}
+
+.cloud::after{
+
+content:"";
+position:absolute;
+width:70px;
+height:70px;
+background:white;
+border-radius:50%;
+right:10px;
+top:-30px;
+
+}
+
+.c1{
+
+width:180px;
+height:60px;
+top:70px;
+left:-220px;
+animation:moveCloud 35s linear infinite;
+
+}
+
+.c2{
+
+width:220px;
+height:70px;
+top:180px;
+left:-250px;
+animation:moveCloud 45s linear infinite;
+
+}
+
+@keyframes moveCloud{
+
+from{
+
+transform:translateX(0);
+
+}
+
+to{
+
+transform:translateX(calc(100vw + 450px));
+
+}
+
+}
+
+.box{
+
+position:relative;
+z-index:5;
+width:90%;
+max-width:500px;
+padding:35px;
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(12px);
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+h1{
+
+color:#ff5c8a;
+margin-bottom:20px;
+
+}
+
+p{
+
+font-size:20px;
+line-height:1.8;
+color:#444;
+
+}
+
+button{
+
+margin-top:25px;
+padding:16px 35px;
+border:none;
+border-radius:15px;
+background:#ff5c8a;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+.hidden{
+
+display:none;
+
+}
+
+#count{
+
+font-size:70px;
+font-weight:bold;
+color:#ff5c8a;
+
+}
+
+#message{
+
+margin-top:20px;
+font-size:22px;
+line-height:2;
+white-space:pre-wrap;
+text-align:right;
+
+}
+
+</style>
 
 </head>
 
-
 <body>
 
+<div class="cloud c1"></div>
 
-    <div class="container">
+<div class="cloud c2"></div>
 
+<div class="box">
 
-        <h1>⚖️ محكمة الحب</h1>
+<div id="start">
 
+<h1>🌸 صباح الخير يا رويدا 🌸</h1>
 
-        <button id="start">
-            ابدأ المحاكمة ❤️
-        </button>
+<p>
 
+قبل ما يبدأ يومك...
 
+في رسالة صغيرة كتبتها من كل قلبي إلك ❤️
 
-        <div id="court" class="hidden">
+</p>
 
-            <p id="text"></p>
+<button onclick="startMessage()">
 
-        </div>
+💌 افتحي الرسالة
 
+</button>
 
+</div>
 
-        <div id="choices" style="display:none;">
+<div id="counterBox" class="hidden">
 
+<div id="count">3</div>
 
-            <button id="forgive">
-                أسامحك ❤️
-            </button>
+<p>استعدي... ❤️</p>
 
+</div>
 
-            <button id="no">
-                لسه زعلانة 😢
-            </button>
+<div id="message" class="hidden"></div>
 
-
-        </div>
-
-
-
-        <div id="final" style="display:none;">
-
-            <h2>
-                تم الحكم بالحب ❤️
-            </h2>
-
-            <p>
-                شكراً لأنك سامحتيني يا رويدا،
-                وجودك أجمل شيء في حياتي ❤️
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-
-<script src="script.js"></script>
-
-
-</body>
-
-</html>
+<script>
