@@ -134,5 +134,3 @@ heart.remove();
 </body>
 
 </html>
-
-
