@@ -1,148 +1,93 @@
-const text = document.getElementById("text");
-const court = document.getElementById("court");
-const start = document.getElementById("start");
-const choices = document.getElementById("choices");
-const forgive = document.getElementById("forgive");
-const no = document.getElementById("no");
-const final = document.getElementById("final");
+function startMessage(){
 
+document.getElementById("start").classList.add("hidden");
 
-// نص المحاكمة
-const lines = [
-    "⚖️ بدأت جلسة محكمة الحب...",
-    "",
-    "القاضي: هل يعترف المتهم بما فعل؟",
-    "",
-    "أيمن:",
-    "نعم... أعترف.",
-    "",
-    "أعترف أني أخطأت...",
-    "وأعترف أني زعلت أغلى إنسانة عندي.",
-    "",
-    "لكن...",
-    "ولا يوم كان قصدي أوجع قلبها.",
-    "",
-    "كل اللي أتمناه...",
-    "إنها تسمعني للآخر. ❤️"
-];
+document.getElementById("counterBox").classList.remove("hidden");
 
+let number=3;
 
-let i = 0;
+document.getElementById("count").innerHTML=number;
 
+let timer=setInterval(function(){
 
-// كتابة الكلام بالتدريج
-function typeLine() {
+number--;
 
-    if (i >= lines.length) {
+document.getElementById("count").innerHTML=number;
 
-        choices.style.display = "flex";
+if(number==0){
 
-        return;
+clearInterval(timer);
 
-    }
+document.getElementById("counterBox").classList.add("hidden");
 
+document.getElementById("message").classList.remove("hidden");
 
-    text.innerHTML += lines[i] + "<br>";
-
-    court.classList.remove("hidden");
-
-    i++;
-
-
-    setTimeout(typeLine, 1500);
+writeMessage();
 
 }
 
+},1000);
 
+}
 
-// زر البداية
-start.onclick = function () {
+const text=`
 
-    start.style.display = "none";
+🌸 صباح الخير يا حبيبتي رويدا 🌸
 
-    typeLine();
+اليوم الجمعة...
+وأول دعائي كان إلك. ❤️
 
-};
+الله يحفظك،
+ويطمن قلبك،
+ويكتب لك راحة وسعادة
+أكثر مما تتمنين.
 
+جمعة مباركة يا عمري.
 
+أتمنى يكون يومك مليان
+ابتسامة،
+وفرحة،
+وأخبار حلوة.
 
-// زر الرفض يهرب
-no.addEventListener("mouseover", function () {
+بحبك كتير يا حبيبتي،
+بعشقك وبعبدك.
 
-    const x = Math.random() * (window.innerWidth - 180);
-    const y = Math.random() * (window.innerHeight - 80);
+الله ما يحرمني منك،
+ويديمك أجمل نعمة بحياتي.
 
+وإن شاء الله يجي اليوم
+اللي نصحى فيه بنفس البيت،
+بيت حلو ودافي،
+يجمعنا إحنا الاثنين.
 
-    no.style.position = "fixed";
+وبعدين...
+بإذن الله،
+يصير عنا ولدين حلوين،
+رحمة وأحمد ❤️
 
-    no.style.left = x + "px";
+وجودك بحياتي نعمة،
+وأنتِ أجمل شيء صار معي.
 
-    no.style.top = y + "px";
+🌹 جمعة مباركة يا رويدا 🌹
 
-});
+`;
 
+let i=0;
 
+function writeMessage(){
 
-// زر المسامحة
-forgive.addEventListener("click", function () {
+if(i<text.length){
 
-    choices.style.display = "none";
+document.getElementById("message").innerHTML+=text.charAt(i);
 
-    final.style.display = "block";
+i++;
 
-    createHearts();
+setTimeout(writeMessage,35);
 
-});
+}else{
 
+setInterval(createHeart,300);
 
-
-
-// صناعة القلوب
-function createHearts() {
-
-
-    for (let i = 0; i < 120; i++) {
-
-
-        setTimeout(function () {
-
-
-            let heart = document.createElement("div");
-
-
-            heart.className = "heart";
-
-
-            heart.innerHTML = "❤️";
-
-
-            heart.style.left = Math.random() * 100 + "vw";
-
-
-            heart.style.fontSize = 
-            (20 + Math.random() * 30) + "px";
-
-
-            heart.style.animationDuration = 
-            (3 + Math.random() * 3) + "s";
-
-
-
-            document.body.appendChild(heart);
-
-
-
-            setTimeout(function () {
-
-                heart.remove();
-
-            }, 6000);
-
-
-
-        }, i * 60);
-
-
-    }
+}
 
 }
