@@ -90,7 +90,8 @@ setInterval(createHeart,300);
 
 }
 
-}function createHeart(){
+}
+function createHeart(){
 
 const heart=document.createElement("div");
 
