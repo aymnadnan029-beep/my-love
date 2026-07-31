@@ -90,4 +90,48 @@ setInterval(createHeart,300);
 
 }
 
+}function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.style.position="fixed";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.top="-40px";
+
+heart.style.fontSize=(20+Math.random()*25)+"px";
+
+heart.style.zIndex="9999";
+
+heart.style.pointerEvents="none";
+
+heart.style.transition="transform 6s linear, opacity 6s linear";
+
+document.body.appendChild(heart);
+
+setTimeout(function(){
+
+heart.style.transform="translateY(110vh) rotate(360deg)";
+
+heart.style.opacity="0";
+
+},50);
+
+setTimeout(function(){
+
+heart.remove();
+
+},6200);
+
 }
+
+</script>
+
+</body>
+
+</html>
+
+
