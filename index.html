@@ -1,151 +1,381 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إليكِ ❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Tahoma,sans-serif;
-}
+  <title>موقعي الاحترافي</title>
+  <meta name="description" content="موقع إلكتروني احترافي وعصري">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-body{
-background:linear-gradient(135deg,#ff9ecf,#ffd6e8,#fff);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-overflow:hidden;
-}
-
-.card{
-width:90%;
-max-width:700px;
-background:rgba(255,255,255,.9);
-padding:35px;
-border-radius:25px;
-text-align:center;
-box-shadow:0 15px 40px rgba(0,0,0,.2);
-animation:show 1s;
-}
-
-@keyframes show{
-from{opacity:0;transform:scale(.8);}
-to{opacity:1;transform:scale(1);}
-}
-
-h1{
-color:#ff2d75;
-margin-bottom:20px;
-font-size:34px;
-}
-
-#text{
-font-size:22px;
-line-height:2;
-color:#444;
-white-space:pre-line;
-}
-
-.heart{
-position:absolute;
-color:#ff4f87;
-font-size:20px;
-animation:fall linear infinite;
-}
-
-@keyframes fall{
-0%{
-transform:translateY(-10vh);
-opacity:1;
-}
-100%{
-transform:translateY(110vh);
-opacity:0;
-}
-}
-</style>
-
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="card">
-<h1>💖 إلى حبيبتي رويدا 💖</h1>
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav">
 
-<div id="text"></div>
+      <a href="#" class="logo">
+        <span>موقعي</span>
+      </a>
 
-</div>
+      <nav class="menu" id="menu">
+        <a href="#home">الرئيسية</a>
+        <a href="#about">من نحن</a>
+        <a href="#services">خدماتنا</a>
+        <a href="#work">أعمالنا</a>
+        <a href="#reviews">آراء العملاء</a>
+        <a href="#contact">تواصل معنا</a>
+      </nav>
 
-<script>
+      <a href="#contact" class="nav-button">
+        اطلب الآن
+      </a>
 
-const message=`
+      <button class="menu-btn" id="menuBtn">
+        ☰
+      </button>
 
-إذا وصلتي لهون...
-فهذا لأنكِ أغلى إنسانة بحياتي ❤️
+    </div>
+  </header>
 
-اشتقتلك كتير...
-وأنا آسف إذا زعلتك.
 
-ما مرّت لحظة إلا وأنا بفكر فيكي.
+  <!-- Hero -->
+  <main>
 
-بحبك...
-وبعبدك...
+    <section class="hero" id="home">
 
-وأنتِ أجمل شي صار بحياتي.
+      <div class="container hero-content">
 
-سامحيني،
-وخلينا نرجع نضحك متل قبل.
+        <div class="hero-text">
 
-أنا ناطر رسالة منك...
-حتى لو كانت كلمة وحدة ❤️
+          <span class="badge">
+            ✦ جودة • احتراف • ثقة
+          </span>
 
-`;
+          <h1>
+            حلول احترافية
+            <span>تصنع الفرق</span>
+          </h1>
 
-let i=0;
+          <p>
+            نقدم لك خدمات احترافية بجودة عالية وتصميم عصري،
+            مع الاهتمام بأدق التفاصيل لضمان أفضل تجربة ممكنة.
+          </p>
 
-function type(){
+          <div class="hero-buttons">
 
-if(i<message.length){
+            <a href="#services" class="btn primary">
+              اكتشف خدماتنا
+            </a>
 
-document.getElementById("text").innerHTML+=message.charAt(i);
+            <a href="#contact" class="btn secondary">
+              تواصل معنا
+            </a>
 
-i++;
+          </div>
 
-setTimeout(type,55);
+          <div class="stats">
 
-}
+            <div>
+              <strong>+500</strong>
+              <span>عميل</span>
+            </div>
 
-}
+            <div>
+              <strong>+1000</strong>
+              <span>مشروع</span>
+            </div>
 
-type();
+            <div>
+              <strong>5★</strong>
+              <span>تقييم</span>
+            </div>
 
-function createHeart(){
+          </div>
 
-const heart=document.createElement("div");
+        </div>
 
-heart.className="heart";
 
-heart.innerHTML="❤️";
+        <div class="hero-image">
 
-heart.style.left=Math.random()*100+"vw";
+          <div class="image-card">
+            <div class="image-placeholder">
+              <span>صورتك هنا</span>
+            </div>
+          </div>
 
-heart.style.fontSize=(15+Math.random()*25)+"px";
+        </div>
 
-heart.style.animationDuration=(4+Math.random()*4)+"s";
+      </div>
 
-document.body.appendChild(heart);
+    </section>
 
-setTimeout(()=>heart.remove(),8000);
 
-}
+    <!-- About -->
+    <section class="section" id="about">
 
-setInterval(createHeart,250);
+      <div class="container">
 
-</script>
+        <div class="section-title">
+          <span>من نحن</span>
+          <h2>خبرة تهتم بكل التفاصيل</h2>
+          <p>
+            نعمل على تقديم تجربة مختلفة تجمع بين الجودة،
+            الاحتراف، السرعة والاهتمام بالعميل.
+          </p>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-card">
+            <div class="icon">✓</div>
+            <h3>جودة عالية</h3>
+            <p>
+              نحرص على استخدام أفضل الحلول والمواد لتحقيق
+              أفضل نتيجة ممكنة.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <div class="icon">★</div>
+            <h3>احترافية</h3>
+            <p>
+              فريق يهتم بالتفاصيل ويعمل وفق معايير احترافية.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <div class="icon">⚡</div>
+            <h3>سرعة في التنفيذ</h3>
+            <p>
+              ننجز أعمالنا بكفاءة مع الحفاظ على مستوى الجودة.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Services -->
+    <section class="section services" id="services">
+
+      <div class="container">
+
+        <div class="section-title">
+          <span>خدماتنا</span>
+          <h2>ماذا نقدم لك؟</h2>
+          <p>
+            مجموعة من الخدمات المصممة لتلبية احتياجاتك.
+          </p>
+        </div>
+
+
+        <div class="services-grid">
+
+          <article class="service-card">
+            <div class="service-icon">01</div>
+            <h3>الخدمة الأولى</h3>
+            <p>
+              وصف مختصر واحترافي للخدمة التي تقدمها للعملاء.
+            </p>
+            <a href="#contact">اعرف المزيد ←</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">02</div>
+            <h3>الخدمة الثانية</h3>
+            <p>
+              وصف مختصر واحترافي للخدمة التي تقدمها للعملاء.
+            </p>
+            <a href="#contact">اعرف المزيد ←</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">03</div>
+            <h3>الخدمة الثالثة</h3>
+            <p>
+              وصف مختصر واحترافي للخدمة التي تقدمها للعملاء.
+            </p>
+            <a href="#contact">اعرف المزيد ←</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">04</div>
+            <h3>الخدمة الرابعة</h3>
+            <p>
+              وصف مختصر واحترافي للخدمة التي تقدمها للعملاء.
+            </p>
+            <a href="#contact">اعرف المزيد ←</a>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Work -->
+    <section class="section" id="work">
+
+      <div class="container">
+
+        <div class="section-title">
+          <span>أعمالنا</span>
+          <h2>نماذج من أعمالنا</h2>
+        </div>
+
+        <div class="gallery">
+
+          <div class="gallery-item">
+            <div>مشروع 01</div>
+          </div>
+
+          <div class="gallery-item">
+            <div>مشروع 02</div>
+          </div>
+
+          <div class="gallery-item">
+            <div>مشروع 03</div>
+          </div>
+
+          <div class="gallery-item">
+            <div>مشروع 04</div>
+          </div>
+
+          <div class="gallery-item">
+            <div>مشروع 05</div>
+          </div>
+
+          <div class="gallery-item">
+            <div>مشروع 06</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Reviews -->
+    <section class="section reviews" id="reviews">
+
+      <div class="container">
+
+        <div class="section-title">
+          <span>آراء العملاء</span>
+          <h2>ماذا يقول عملاؤنا؟</h2>
+        </div>
+
+        <div class="reviews-grid">
+
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+              "تجربة ممتازة جدًا، تعامل راقٍ وجودة عالية."
+            </p>
+            <strong>محمد أحمد</strong>
+          </div>
+
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+              "الخدمة كانت أفضل مما توقعت، أنصح بالتعامل معهم."
+            </p>
+            <strong>أحمد علي</strong>
+          </div>
+
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+              "احترافية وسرعة وجودة في نفس الوقت."
+            </p>
+            <strong>عمر سالم</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+
+      <div class="container contact-box">
+
+        <div>
+          <span>تواصل معنا</span>
+
+          <h2>
+            جاهز للبدء؟
+          </h2>
+
+          <p>
+            تواصل معنا الآن وسنكون سعداء بخدمتك والإجابة عن جميع استفساراتك.
+          </p>
+        </div>
+
+        <div class="contact-buttons">
+
+          <a href="tel:+218000000000" class="btn primary">
+            📞 اتصل بنا
+          </a>
+
+          <a href="https://wa.me/218000000000" class="btn whatsapp">
+            واتساب
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer>
+
+    <div class="container footer-content">
+
+      <div>
+        <h3>موقعي</h3>
+        <p>
+          الجودة والاحتراف في كل التفاصيل.
+        </p>
+      </div>
+
+      <div class="social">
+
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 جميع الحقوق محفوظة
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
 
 </body>
 </html>
