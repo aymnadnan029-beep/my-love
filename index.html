@@ -30,11 +30,10 @@ rel="stylesheet">
 
 </head>
 
-
 <body>
 
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 
 <header class="header">
 
@@ -75,7 +74,9 @@ class="nav-button">
 </a>
 
 
-<button id="menuBtn">
+<button
+id="menuBtn"
+aria-label="فتح القائمة">
 
 ☰
 
@@ -87,7 +88,7 @@ class="nav-button">
 
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 
 <section class="hero" id="home">
 
@@ -97,9 +98,7 @@ class="nav-button">
 <div class="hero-text">
 
 <span class="badge">
-
 حديد للتغليف والحماية
-
 </span>
 
 
@@ -112,7 +111,7 @@ class="nav-button">
 </h1>
 
 
-<p id="heroDescription">
+<p>
 
 نمنح سيارتك مظهراً جديداً وحماية تدوم،
 مع جودة عالية وتنفيذ احترافي بأدق التفاصيل.
@@ -181,7 +180,8 @@ class="btn secondary">
 <img
 id="heroImage"
 src="assets/images/hero.jpg"
-alt="حديد للتغليف والحماية">
+alt="حديد للتغليف والحماية"
+onerror="this.style.display='none';">
 
 </div>
 
@@ -192,7 +192,7 @@ alt="حديد للتغليف والحماية">
 
 
 
-<!-- SERVICES -->
+<!-- ================= SERVICES ================= -->
 
 <section
 class="section"
@@ -220,7 +220,9 @@ id="services">
 id="servicesContainer"
 class="services-grid">
 
-<!-- الخدمات تظهر هنا -->
+<div class="loading">
+جاري تحميل الخدمات...
+</div>
 
 </div>
 
@@ -231,7 +233,7 @@ class="services-grid">
 
 
 
-<!-- GALLERY -->
+<!-- ================= GALLERY ================= -->
 
 <section
 class="section gallery-section"
@@ -250,6 +252,10 @@ id="gallery">
 أعمال حديد
 </h2>
 
+<p>
+شاهد بعضاً من أعمالنا وتنفيذاتنا.
+</p>
+
 </div>
 
 
@@ -257,7 +263,9 @@ id="gallery">
 id="galleryContainer"
 class="gallery">
 
-<!-- الصور تظهر هنا -->
+<div class="loading">
+جاري تحميل الصور...
+</div>
 
 </div>
 
@@ -268,7 +276,7 @@ class="gallery">
 
 
 
-<!-- ABOUT -->
+<!-- ================= ABOUT ================= -->
 
 <section
 class="section about"
@@ -298,7 +306,7 @@ id="about">
 
 
 
-<!-- PRICES -->
+<!-- ================= PRICES ================= -->
 
 <section
 class="section prices"
@@ -322,7 +330,9 @@ id="prices">
 
 <div id="pricesContainer">
 
-<!-- الأسعار تظهر هنا -->
+<div class="loading">
+جاري تحميل الأسعار...
+</div>
 
 </div>
 
@@ -333,7 +343,7 @@ id="prices">
 
 
 
-<!-- CONTACT -->
+<!-- ================= CONTACT ================= -->
 
 <section
 class="section contact"
@@ -374,6 +384,7 @@ class="btn primary">
 <a
 href="https://wa.me/218920512607"
 target="_blank"
+rel="noopener"
 class="btn whatsapp">
 
 واتساب
@@ -390,11 +401,12 @@ class="btn whatsapp">
 
 
 
-<!-- FLOATING WHATSAPP -->
+<!-- ================= WHATSAPP ================= -->
 
 <a
 href="https://wa.me/218920512607"
 target="_blank"
+rel="noopener"
 class="floating-whatsapp">
 
 واتساب
@@ -403,7 +415,7 @@ class="floating-whatsapp">
 
 
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -426,6 +438,8 @@ class="floating-whatsapp">
 </footer>
 
 
+
+<!-- ================= SUPABASE ================= -->
 
 <script
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
