@@ -15,9 +15,9 @@ const menuBtn = document.getElementById("menuBtn");
 const menu = document.querySelector("nav");
 
 if (menuBtn && menu) {
-  menuBtn.onclick = () => {
+  menuBtn.addEventListener("click", () => {
     menu.classList.toggle("active");
-  };
+  });
 }
 
 
@@ -27,57 +27,69 @@ if (menuBtn && menu) {
 
 async function loadServices() {
 
-  const { data, error } = await db
-    .from("services")
-    .select("*")
-    .eq("active", true)
-    .order("id");
-
-  if (error) {
-    console.error("خطأ في تحميل الخدمات:", error);
-    return;
-  }
-
-  const container =
-    document.getElementById("servicesContainer");
+  const container = document.getElementById("servicesContainer");
 
   if (!container) return;
 
-  container.innerHTML = "";
+  try {
 
-  data.forEach(service => {
+    const { data, error } = await db
+      .from("services")
+      .select("*")
+      .eq("active", true)
+      .order("id");
 
-    container.innerHTML += `
+    if (error) {
+      console.error("SERVICES ERROR:", error);
 
-      <div class="service-card">
+      container.innerHTML = `
+        <p>تعذر تحميل الخدمات.</p>
+      `;
 
-        <h3>${service.name || ""}</h3>
+      return;
+    }
 
-        <p>
-          ${service.description || ""}
-        </p>
+    container.innerHTML = "";
 
-        <div class="price">
-          ${service.price || "اتصل لمعرفة السعر"} د.ل
+    data.forEach(service => {
+
+      container.innerHTML += `
+        <div class="service-card">
+
+          <h3>${service.name || ""}</h3>
+
+          <p>
+            ${service.description || ""}
+          </p>
+
+          <div class="price">
+            ${service.price || "اتصل لمعرفة السعر"} د.ل
+          </div>
+
+          <br>
+
+          <a
+            class="btn primary"
+            href="https://wa.me/218920512607?text=${encodeURIComponent(
+              "السلام عليكم، أريد الاستفسار عن " +
+              (service.name || "")
+            )}"
+            target="_blank"
+          >
+            اطلب الآن
+          </a>
+
         </div>
+      `;
 
-        <br>
+    });
 
-        <a
-          class="btn primary"
-          href="https://wa.me/218920512607?text=${encodeURIComponent(
-            "السلام عليكم، أريد الاستفسار عن " +
-            (service.name || "")
-          )}"
-          target="_blank"
-        >
-          اطلب الآن
-        </a>
+  } catch (err) {
 
-      </div>
+    console.error("SERVICES CRASH:", err);
 
-    `;
-  });
+  }
+
 }
 
 
@@ -87,42 +99,53 @@ async function loadServices() {
 
 async function loadPrices() {
 
-  const { data, error } = await db
-    .from("services")
-    .select("*")
-    .eq("active", true)
-    .order("id");
-
-  if (error) {
-    console.error("خطأ في تحميل الأسعار:", error);
-    return;
-  }
-
-  const container =
-    document.getElementById("pricesContainer");
+  const container = document.getElementById("pricesContainer");
 
   if (!container) return;
 
-  container.innerHTML = "";
+  try {
 
-  data.forEach(service => {
+    const { data, error } = await db
+      .from("services")
+      .select("*")
+      .eq("active", true)
+      .order("id");
 
-    container.innerHTML += `
+    if (error) {
 
-      <div class="price-row">
+      console.error("PRICES ERROR:", error);
 
-        <strong>
-          ${service.name || ""}
-        </strong>
+      return;
+    }
 
-        <span>
-          ${service.price || "حسب الطلب"} د.ل
-        </span>
+    container.innerHTML = "";
 
-      </div>
+    data.forEach(service => {
 
-    `;
-  });
+      container.innerHTML += `
+
+        <div class="price-row">
+
+          <strong>
+            ${service.name || ""}
+          </strong>
+
+          <span>
+            ${service.price || "حسب الطلب"} د.ل
+          </span>
+
+        </div>
+
+      `;
+
+    });
+
+  } catch (err) {
+
+    console.error("PRICES CRASH:", err);
+
+  }
+
 }
 
 
@@ -132,61 +155,164 @@ async function loadPrices() {
 
 async function loadGallery() {
 
-  const { data, error } = await db
-    .from("gallery")
-    .select("id, title, image_url")
-    .order("id", { ascending: false });
-
-  if (error) {
-    console.error("خطأ في تحميل معرض الصور:", error);
-    return;
-  }
-
-  console.log("صور المعرض:", data);
-
   const container =
     document.getElementById("galleryContainer");
 
   if (!container) {
-    console.error("لم يتم العثور على galleryContainer");
+
+    console.error(
+      "لم يتم العثور على galleryContainer"
+    );
+
     return;
   }
 
-  container.innerHTML = "";
 
-  if (!data || data.length === 0) {
+  try {
+
+    console.log("بدأ تحميل معرض الصور...");
+
+
+    const { data, error } = await db
+      .from("gallery")
+      .select("id, title, image_url")
+      .order("id", {
+        ascending: false
+      });
+
+
+    if (error) {
+
+      console.error(
+        "GALLERY ERROR:",
+        error
+      );
+
+      container.innerHTML = `
+        <div class="gallery-error">
+
+          <h3>تعذر تحميل معرض الأعمال</h3>
+
+          <p>
+            يوجد خطأ في الاتصال بقاعدة البيانات.
+          </p>
+
+        </div>
+      `;
+
+      return;
+    }
+
+
+    console.log(
+      "GALLERY DATA:",
+      data
+    );
+
+
+    container.innerHTML = "";
+
+
+    if (!data || data.length === 0) {
+
+      container.innerHTML = `
+        <p>
+          لا توجد صور في معرض الأعمال حاليًا.
+        </p>
+      `;
+
+      return;
+    }
+
+
+    data.forEach(item => {
+
+      if (!item.image_url) {
+
+        console.warn(
+          "الصورة بدون رابط:",
+          item
+        );
+
+        return;
+      }
+
+
+      const galleryItem =
+        document.createElement("div");
+
+      galleryItem.className =
+        "gallery-item";
+
+
+      const image =
+        document.createElement("img");
+
+      image.src =
+        item.image_url;
+
+      image.alt =
+        item.title ||
+        "حديد للتغليف والحماية";
+
+      image.loading =
+        "lazy";
+
+
+      image.onerror = () => {
+
+        console.error(
+          "فشل تحميل الصورة:",
+          item.image_url
+        );
+
+        galleryItem.innerHTML = `
+          <p>
+            تعذر تحميل هذه الصورة
+          </p>
+        `;
+
+      };
+
+
+      galleryItem.appendChild(image);
+
+
+      if (item.title) {
+
+        const title =
+          document.createElement("h3");
+
+        title.textContent =
+          item.title;
+
+        galleryItem.appendChild(title);
+
+      }
+
+
+      container.appendChild(
+        galleryItem
+      );
+
+    });
+
+
+  } catch (err) {
+
+    console.error(
+      "GALLERY CRASH:",
+      err
+    );
+
     container.innerHTML = `
-      <p class="empty-gallery">
-        لا توجد صور في معرض الأعمال حاليًا.
+      <p>
+        حدث خطأ أثناء تحميل الصور.
       </p>
     `;
-    return;
+
   }
 
-  data.forEach(item => {
-
-    if (!item.image_url) return;
-
-    container.innerHTML += `
-
-      <div class="gallery-item">
-
-        <img
-          src="${item.image_url}"
-          alt="${item.title || "حديد للتغليف والحماية"}"
-          loading="lazy"
-        >
-
-        ${
-          item.title
-            ? `<h3>${item.title}</h3>`
-            : ""
-        }
-
-      </div>
-
-    `;
-  });
 }
 
 
@@ -195,5 +321,7 @@ async function loadGallery() {
 ========================= */
 
 loadServices();
+
 loadPrices();
+
 loadGallery();
