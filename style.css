@@ -39,7 +39,7 @@ margin:auto;
 }
 
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .header{
 
@@ -51,7 +51,7 @@ width:100%;
 
 z-index:1000;
 
-background:rgba(244,234,219,.96);
+background:rgba(244,234,219,.97);
 
 backdrop-filter:blur(15px);
 
@@ -83,15 +83,17 @@ color:#701f1f;
 
 .logo strong{
 
-font-size:28px;
+font-size:30px;
 
 font-weight:900;
+
+line-height:1.1;
 
 }
 
 .logo small{
 
-font-size:10px;
+font-size:11px;
 
 }
 
@@ -129,6 +131,8 @@ padding:10px 20px;
 
 border-radius:8px;
 
+font-weight:700;
+
 }
 
 #menuBtn{
@@ -139,14 +143,16 @@ border:0;
 
 background:none;
 
-font-size:28px;
+font-size:30px;
 
 color:#701f1f;
+
+cursor:pointer;
 
 }
 
 
-/* HERO */
+/* ================= HERO ================= */
 
 .hero{
 
@@ -196,6 +202,8 @@ line-height:1.1;
 
 margin:20px 0;
 
+font-weight:900;
+
 }
 
 .hero h1 span{
@@ -237,6 +245,8 @@ display:inline-block;
 cursor:pointer;
 
 transition:.3s;
+
+text-align:center;
 
 }
 
@@ -305,7 +315,13 @@ font-size:12px;
 }
 
 
-/* HERO IMAGE */
+/* ================= HERO IMAGE ================= */
+
+.hero-image{
+
+display:block;
+
+}
 
 .hero-image img{
 
@@ -325,7 +341,7 @@ box-shadow:
 }
 
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 
 .section{
 
@@ -357,8 +373,14 @@ margin:8px 0;
 
 }
 
+.section-title p{
 
-/* SERVICES */
+color:#776257;
+
+}
+
+
+/* ================= SERVICES ================= */
 
 .services-grid{
 
@@ -425,7 +447,7 @@ margin:15px 0;
 }
 
 
-/* GALLERY */
+/* ================= GALLERY ================= */
 
 .gallery-section{
 
@@ -460,6 +482,8 @@ transition:.3s;
 
 cursor:pointer;
 
+background:#fff8ef;
+
 }
 
 .gallery img:hover{
@@ -469,7 +493,7 @@ transform:scale(1.03);
 }
 
 
-/* ABOUT */
+/* ================= ABOUT ================= */
 
 .about{
 
@@ -496,7 +520,7 @@ max-width:750px;
 }
 
 
-/* PRICES */
+/* ================= PRICES ================= */
 
 .prices{
 
@@ -531,7 +555,7 @@ font-weight:900;
 }
 
 
-/* CONTACT */
+/* ================= CONTACT ================= */
 
 .contact-box{
 
@@ -576,7 +600,7 @@ color:white;
 }
 
 
-/* WHATSAPP */
+/* ================= WHATSAPP ================= */
 
 .floating-whatsapp{
 
@@ -603,7 +627,7 @@ font-weight:bold;
 }
 
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer{
 
@@ -624,7 +648,22 @@ margin-top:8px;
 }
 
 
-/* MOBILE */
+/* ================= LOADING ================= */
+
+.loading{
+
+text-align:center;
+
+padding:40px;
+
+color:#701f1f;
+
+font-weight:700;
+
+}
+
+
+/* ================= MOBILE ================= */
 
 @media(max-width:900px){
 
@@ -650,6 +689,8 @@ flex-direction:column;
 
 border:1px solid #d7c0a8;
 
+box-shadow:0 15px 30px rgba(0,0,0,.08);
+
 }
 
 nav.active{
@@ -670,6 +711,14 @@ display:none;
 
 }
 
+.hero{
+
+padding-top:130px;
+
+padding-bottom:60px;
+
+}
+
 .hero-grid{
 
 grid-template-columns:1fr;
@@ -680,7 +729,15 @@ text-align:center;
 
 .hero-image{
 
-display:none;
+display:block;
+
+margin-top:30px;
+
+}
+
+.hero-image img{
+
+height:320px;
 
 }
 
@@ -716,11 +773,9 @@ text-align:center;
 
 @media(max-width:600px){
 
-.services-grid,
+.container{
 
-.gallery{
-
-grid-template-columns:1fr;
+width:90%;
 
 }
 
@@ -730,9 +785,21 @@ font-size:45px;
 
 }
 
+.hero p{
+
+font-size:16px;
+
+}
+
 .buttons{
 
 flex-direction:column;
+
+}
+
+.buttons .btn{
+
+width:100%;
 
 }
 
@@ -744,11 +811,55 @@ gap:20px;
 
 }
 
+.services-grid,
+
+.gallery{
+
+grid-template-columns:1fr;
+
+}
+
+.gallery img{
+
+height:300px;
+
+}
+
 .contact-buttons{
 
 flex-direction:column;
 
 width:100%;
+
+}
+
+.contact-buttons .btn{
+
+width:100%;
+
+}
+
+.contact-box{
+
+padding:35px 25px;
+
+}
+
+.contact-box h2{
+
+font-size:30px;
+
+}
+
+.about h2{
+
+font-size:34px;
+
+}
+
+.section{
+
+padding:80px 0;
 
 }
 
