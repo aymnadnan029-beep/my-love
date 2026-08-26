@@ -1,5 +1,5 @@
 const SUPABASE_URL = "Project URL الذي نسخته";
-const SUPABASE_KEY = "Publishable key الذي نسخته";
+const SUPABASE_KEY = sb_publishable_GZVbqF23r-iLovNyOa5UcQ__TpFmZFM
 const db = supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
