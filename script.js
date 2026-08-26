@@ -2,7 +2,7 @@
    SUPABASE
 ===================================================== */
 
-const SUPABASE_URL = "ضع Project URL هنا";
+const SUPABASE_URL = "https://crnhxazqgoekkvsllpdx.supabase.co/rest/v1/";
 
 const SUPABASE_KEY =
 "sb_publishable_GZVbqF23r-iLovNyOa5UcQ__TpFmZFM";
