@@ -1,5 +1,12 @@
-const SUPABASE_URL = "https://crnhxazqgoekkvsllpdx.supabase.co";
-const SUPABASE_KEY = "sb_publishable_GZVbqF23r-iLovNyOa5UcQ__TpFmZFM";
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL = "ضع Project URL هنا";
+
+const SUPABASE_KEY =
+"sb_publishable_GZVbqF23r-iLovNyOa5UcQ__TpFmZFM";
+
 
 const db = supabase.createClient(
   SUPABASE_URL,
@@ -7,321 +14,392 @@ const db = supabase.createClient(
 );
 
 
-/* =========================
+/* =====================================================
    القائمة
-========================= */
+===================================================== */
 
-const menuBtn = document.getElementById("menuBtn");
-const menu = document.querySelector("nav");
+const menuBtn =
+document.getElementById("menuBtn");
+
+const menu =
+document.getElementById("menu");
+
 
 if (menuBtn && menu) {
+
   menuBtn.addEventListener("click", () => {
+
     menu.classList.toggle("active");
+
   });
+
 }
 
 
-/* =========================
+/* إغلاق القائمة عند الضغط على رابط */
+
+document.querySelectorAll("#menu a")
+.forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    menu.classList.remove("active");
+
+  });
+
+});
+
+
+/* =====================================================
    الخدمات
-========================= */
+===================================================== */
 
 async function loadServices() {
 
-  const container = document.getElementById("servicesContainer");
+  const container =
+  document.getElementById("servicesContainer");
+
 
   if (!container) return;
 
-  try {
 
-    const { data, error } = await db
-      .from("services")
-      .select("*")
-      .eq("active", true)
-      .order("id");
+  const { data, error } = await db
 
-    if (error) {
-      console.error("SERVICES ERROR:", error);
+    .from("services")
 
-      container.innerHTML = `
-        <p>تعذر تحميل الخدمات.</p>
-      `;
+    .select("*")
 
-      return;
-    }
+    .eq("active", true)
 
-    container.innerHTML = "";
+    .order("id");
 
-    data.forEach(service => {
 
-      container.innerHTML += `
-        <div class="service-card">
+  if (error) {
 
-          <h3>${service.name || ""}</h3>
+    console.error(
+      "خطأ في تحميل الخدمات:",
+      error
+    );
 
-          <p>
-            ${service.description || ""}
-          </p>
+    container.innerHTML = `
 
-          <div class="price">
-            ${service.price || "اتصل لمعرفة السعر"} د.ل
-          </div>
+      <div class="loading">
 
-          <br>
+        تعذر تحميل الخدمات حالياً.
 
-          <a
-            class="btn primary"
-            href="https://wa.me/218920512607?text=${encodeURIComponent(
-              "السلام عليكم، أريد الاستفسار عن " +
-              (service.name || "")
-            )}"
-            target="_blank"
-          >
-            اطلب الآن
-          </a>
+      </div>
 
-        </div>
-      `;
+    `;
 
-    });
-
-  } catch (err) {
-
-    console.error("SERVICES CRASH:", err);
+    return;
 
   }
+
+
+  if (!data || data.length === 0) {
+
+    container.innerHTML = `
+
+      <div class="loading">
+
+        لا توجد خدمات حالياً.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  data.forEach(service => {
+
+    const name =
+    service.name || "خدمة";
+
+
+    const description =
+    service.description || "";
+
+
+    const price =
+    service.price || "حسب الطلب";
+
+
+    const whatsappText =
+    encodeURIComponent(
+
+      "السلام عليكم، أريد الاستفسار عن " +
+      name
+
+    );
+
+
+    container.innerHTML += `
+
+      <div class="service-card">
+
+        <h3>
+          ${name}
+        </h3>
+
+        <p>
+          ${description}
+        </p>
+
+        <div class="price">
+          ${price} د.ل
+        </div>
+
+        <a
+          class="btn primary"
+          href="https://wa.me/218920512607?text=${whatsappText}"
+          target="_blank"
+          rel="noopener"
+        >
+          اطلب الآن
+        </a>
+
+      </div>
+
+    `;
+
+  });
 
 }
 
 
-/* =========================
+/* =====================================================
    الأسعار
-========================= */
+===================================================== */
 
 async function loadPrices() {
 
-  const container = document.getElementById("pricesContainer");
+  const container =
+  document.getElementById("pricesContainer");
+
 
   if (!container) return;
 
-  try {
 
-    const { data, error } = await db
-      .from("services")
-      .select("*")
-      .eq("active", true)
-      .order("id");
+  const { data, error } = await db
 
-    if (error) {
+    .from("services")
 
-      console.error("PRICES ERROR:", error);
+    .select("*")
 
-      return;
-    }
+    .eq("active", true)
 
-    container.innerHTML = "";
+    .order("id");
 
-    data.forEach(service => {
 
-      container.innerHTML += `
+  if (error) {
 
-        <div class="price-row">
+    console.error(
+      "خطأ في تحميل الأسعار:",
+      error
+    );
 
-          <strong>
-            ${service.name || ""}
-          </strong>
+    container.innerHTML = `
 
-          <span>
-            ${service.price || "حسب الطلب"} د.ل
-          </span>
+      <div class="loading">
 
-        </div>
+        تعذر تحميل الأسعار حالياً.
 
-      `;
+      </div>
 
-    });
+    `;
 
-  } catch (err) {
-
-    console.error("PRICES CRASH:", err);
+    return;
 
   }
+
+
+  if (!data || data.length === 0) {
+
+    container.innerHTML = `
+
+      <div class="loading">
+
+        لا توجد أسعار مضافة حالياً.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  data.forEach(service => {
+
+    container.innerHTML += `
+
+      <div class="price-row">
+
+        <strong>
+          ${service.name || "خدمة"}
+        </strong>
+
+        <span>
+          ${service.price || "حسب الطلب"} د.ل
+        </span>
+
+      </div>
+
+    `;
+
+  });
 
 }
 
 
-/* =========================
+/* =====================================================
    معرض الصور
-========================= */
+===================================================== */
 
 async function loadGallery() {
 
   const container =
-    document.getElementById("galleryContainer");
-
-  if (!container) {
-
-    console.error(
-      "لم يتم العثور على galleryContainer"
-    );
-
-    return;
-  }
+  document.getElementById("galleryContainer");
 
 
-  try {
-
-    console.log("بدأ تحميل معرض الصور...");
+  if (!container) return;
 
 
-    const { data, error } = await db
-      .from("gallery")
-      .select("id, title, image_url")
-      .order("id", {
-        ascending: false
-      });
+  const { data, error } = await db
 
+    .from("gallery")
 
-    if (error) {
+    .select("*")
 
-      console.error(
-        "GALLERY ERROR:",
-        error
-      );
-
-      container.innerHTML = `
-        <div class="gallery-error">
-
-          <h3>تعذر تحميل معرض الأعمال</h3>
-
-          <p>
-            يوجد خطأ في الاتصال بقاعدة البيانات.
-          </p>
-
-        </div>
-      `;
-
-      return;
-    }
-
-
-    console.log(
-      "GALLERY DATA:",
-      data
-    );
-
-
-    container.innerHTML = "";
-
-
-    if (!data || data.length === 0) {
-
-      container.innerHTML = `
-        <p>
-          لا توجد صور في معرض الأعمال حاليًا.
-        </p>
-      `;
-
-      return;
-    }
-
-
-    data.forEach(item => {
-
-      if (!item.image_url) {
-
-        console.warn(
-          "الصورة بدون رابط:",
-          item
-        );
-
-        return;
-      }
-
-
-      const galleryItem =
-        document.createElement("div");
-
-      galleryItem.className =
-        "gallery-item";
-
-
-      const image =
-        document.createElement("img");
-
-      image.src =
-        item.image_url;
-
-      image.alt =
-        item.title ||
-        "حديد للتغليف والحماية";
-
-      image.loading =
-        "lazy";
-
-
-      image.onerror = () => {
-
-        console.error(
-          "فشل تحميل الصورة:",
-          item.image_url
-        );
-
-        galleryItem.innerHTML = `
-          <p>
-            تعذر تحميل هذه الصورة
-          </p>
-        `;
-
-      };
-
-
-      galleryItem.appendChild(image);
-
-
-      if (item.title) {
-
-        const title =
-          document.createElement("h3");
-
-        title.textContent =
-          item.title;
-
-        galleryItem.appendChild(title);
-
-      }
-
-
-      container.appendChild(
-        galleryItem
-      );
-
+    .order("id", {
+      ascending: false
     });
 
 
-  } catch (err) {
+  if (error) {
 
     console.error(
-      "GALLERY CRASH:",
-      err
+      "خطأ في تحميل معرض الصور:",
+      error
     );
 
     container.innerHTML = `
-      <p>
-        حدث خطأ أثناء تحميل الصور.
-      </p>
+
+      <div class="loading">
+
+        تعذر تحميل الصور.
+
+      </div>
+
     `;
 
+    return;
+
   }
+
+
+  console.log(
+    "صور معرض الأعمال:",
+    data
+  );
+
+
+  if (!data || data.length === 0) {
+
+    container.innerHTML = `
+
+      <div class="loading">
+
+        لا توجد صور في المعرض حالياً.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  data.forEach(item => {
+
+    if (!item.image_url) return;
+
+
+    const image =
+    document.createElement("img");
+
+
+    image.src =
+    item.image_url;
+
+
+    image.alt =
+    item.title ||
+    "حديد للتغليف والحماية";
+
+
+    image.loading =
+    "lazy";
+
+
+    image.onerror =
+    function() {
+
+      console.error(
+        "فشل تحميل الصورة:",
+        item.image_url
+      );
+
+      this.style.display =
+      "none";
+
+    };
+
+
+    container.appendChild(image);
+
+  });
 
 }
 
 
-/* =========================
+/* =====================================================
    تشغيل الموقع
-========================= */
+===================================================== */
 
-loadServices();
+async function startWebsite() {
 
-loadPrices();
+  console.log(
+    "بدأ تشغيل موقع حديد..."
+  );
 
-loadGallery();
+
+  await loadServices();
+
+  await loadPrices();
+
+  await loadGallery();
+
+
+  console.log(
+    "تم تحميل الموقع."
+  );
+
+}
+
+
+startWebsite();
