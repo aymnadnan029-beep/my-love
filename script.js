@@ -1,22 +1,29 @@
-const SUPABASE_URL = "Project URL الذي نسخته";
-const SUPABASE_KEY = sb_publishable_GZVbqF23r-iLovNyOa5UcQ__TpFmZFM
+const SUPABASE_URL = "https://crnhxazqgoekkvsllpdx.supabase.co";
+const SUPABASE_KEY = "sb_publishable_GZVbqF23r-iLovNyOa5UcQ__TpFmZFM";
+
 const db = supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
 
-/* القائمة */
+/* =========================
+   القائمة
+========================= */
 
 const menuBtn = document.getElementById("menuBtn");
 const menu = document.querySelector("nav");
 
-menuBtn.onclick = () => {
-  menu.classList.toggle("active");
-};
+if (menuBtn && menu) {
+  menuBtn.onclick = () => {
+    menu.classList.toggle("active");
+  };
+}
 
 
-/* الخدمات */
+/* =========================
+   الخدمات
+========================= */
 
 async function loadServices() {
 
@@ -27,12 +34,14 @@ async function loadServices() {
     .order("id");
 
   if (error) {
-    console.error(error);
+    console.error("خطأ في تحميل الخدمات:", error);
     return;
   }
 
   const container =
     document.getElementById("servicesContainer");
+
+  if (!container) return;
 
   container.innerHTML = "";
 
@@ -42,7 +51,7 @@ async function loadServices() {
 
       <div class="service-card">
 
-        <h3>${service.name}</h3>
+        <h3>${service.name || ""}</h3>
 
         <p>
           ${service.description || ""}
@@ -57,7 +66,8 @@ async function loadServices() {
         <a
           class="btn primary"
           href="https://wa.me/218920512607?text=${encodeURIComponent(
-            "السلام عليكم، أريد الاستفسار عن " + service.name
+            "السلام عليكم، أريد الاستفسار عن " +
+            (service.name || "")
           )}"
           target="_blank"
         >
@@ -67,13 +77,13 @@ async function loadServices() {
       </div>
 
     `;
-
   });
-
 }
 
 
-/* الأسعار */
+/* =========================
+   الأسعار
+========================= */
 
 async function loadPrices() {
 
@@ -83,10 +93,15 @@ async function loadPrices() {
     .eq("active", true)
     .order("id");
 
-  if (error) return;
+  if (error) {
+    console.error("خطأ في تحميل الأسعار:", error);
+    return;
+  }
 
   const container =
     document.getElementById("pricesContainer");
+
+  if (!container) return;
 
   container.innerHTML = "";
 
@@ -97,7 +112,7 @@ async function loadPrices() {
       <div class="price-row">
 
         <strong>
-          ${service.name}
+          ${service.name || ""}
         </strong>
 
         <span>
@@ -107,43 +122,77 @@ async function loadPrices() {
       </div>
 
     `;
-
   });
-
 }
 
 
-/* الصور */
+/* =========================
+   معرض الصور
+========================= */
 
 async function loadGallery() {
 
   const { data, error } = await db
     .from("gallery")
-    .select("*")
+    .select("id, title, image_url")
     .order("id", { ascending: false });
 
-  if (error) return;
+  if (error) {
+    console.error("خطأ في تحميل معرض الصور:", error);
+    return;
+  }
+
+  console.log("صور المعرض:", data);
 
   const container =
     document.getElementById("galleryContainer");
 
+  if (!container) {
+    console.error("لم يتم العثور على galleryContainer");
+    return;
+  }
+
   container.innerHTML = "";
+
+  if (!data || data.length === 0) {
+    container.innerHTML = `
+      <p class="empty-gallery">
+        لا توجد صور في معرض الأعمال حاليًا.
+      </p>
+    `;
+    return;
+  }
 
   data.forEach(item => {
 
+    if (!item.image_url) return;
+
     container.innerHTML += `
 
-      <img
-        src="${item.image_url}"
-        alt="${item.title || "حديد للتغليف والحماية"}"
-      >
+      <div class="gallery-item">
+
+        <img
+          src="${item.image_url}"
+          alt="${item.title || "حديد للتغليف والحماية"}"
+          loading="lazy"
+        >
+
+        ${
+          item.title
+            ? `<h3>${item.title}</h3>`
+            : ""
+        }
+
+      </div>
 
     `;
-
   });
-
 }
 
+
+/* =========================
+   تشغيل الموقع
+========================= */
 
 loadServices();
 loadPrices();
