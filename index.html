@@ -1,453 +1,112 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>حديد للتغليف والحماية</title>
-
-<meta
-name="description"
-content="حديد للتغليف والحماية - تغليف السيارات وتغيير الجلود والأسقف والأبواب والأرضيات."
->
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff7f5">
+<title>رويدا 😂💗 | ضحكة وحب</title>
+<style>
+:root{--pink:#f4a6b8;--rose:#d94f78;--cream:#fff7f5;--ink:#33252b;--lav:#f0eaff;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;line-height:1.7}
+button{font:inherit;cursor:pointer;border:0}
+.wrap{width:min(1100px,92%);margin:auto}
+nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.brand{font-weight:900;font-size:1.15rem;letter-spacing:-.5px}.brand span{color:var(--rose)}
+.pill{background:#fff;border:1px solid #f3dce2;padding:9px 15px;border-radius:999px;font-size:.9rem}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:48px 0 65px}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;background:#ffe6ec;color:#a62d54;border-radius:99px;padding:7px 13px;font-size:.88rem;font-weight:700}
+h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1.12;letter-spacing:-2px;margin:20px 0}
+h1 em{font-style:normal;color:var(--rose)}
+.lead{font-size:1.12rem;color:#76666c;max-width:510px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.primary{background:var(--rose);color:white;padding:13px 21px;border-radius:15px;box-shadow:0 9px 22px #d94f7828;font-weight:800}
+.secondary{background:white;color:var(--ink);padding:13px 21px;border-radius:15px;border:1px solid #f0dfe4;font-weight:700}
+.art{min-height:390px;border-radius:35px;background:linear-gradient(145deg,#ffe0e8,#f2eaff);display:grid;place-items:center;position:relative;overflow:hidden}
+.heart{font-size:9rem;filter:drop-shadow(0 16px 15px #d94f7830);animation:float 3s ease-in-out infinite}
+.sticker{position:absolute;background:#fff;padding:12px 16px;border-radius:17px;box-shadow:0 12px 30px #a64d6815;font-weight:800}
+.s1{top:13%;right:8%;transform:rotate(7deg)}.s2{bottom:17%;left:7%;transform:rotate(-7deg)}.s3{bottom:8%;right:20%;font-size:.88rem}
+.spark{position:absolute;color:#fff;font-size:2rem}.sp1{top:28%;left:18%}.sp2{top:14%;left:43%;font-size:1.3rem}
+section{padding:44px 0}
+.section-head{text-align:center;margin-bottom:25px}.section-head h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 7px;letter-spacing:-1px}.section-head p{color:#83727a;margin:0}
+.joke-box{max-width:760px;margin:auto;background:white;border:1px solid #f2dfe5;border-radius:28px;padding:clamp(22px,5vw,42px);text-align:center;box-shadow:0 15px 45px #6d29400a}
+.joke-emoji{font-size:2.6rem}.joke{font-size:clamp(1.2rem,3vw,1.7rem);font-weight:800;margin:14px auto 25px;min-height:90px;display:grid;place-items:center}
+.joke-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:white;border:1px solid #f1e1e6;border-radius:24px;padding:24px}
+.card .icon{font-size:2rem}.card h3{margin:10px 0 5px}.card p{margin:0;color:#7d6d74}
+.love{background:#34252d;color:white;border-radius:32px;padding:clamp(25px,5vw,48px);text-align:center;position:relative;overflow:hidden}
+.love h2{font-size:clamp(2rem,5vw,3.3rem);margin:0 0 12px}.love p{max-width:650px;margin:0 auto 22px;color:#f4dfe6;font-size:1.1rem}
+.love button{background:#fff;color:#b4315c;border-radius:14px;padding:12px 19px;font-weight:900}
+.secret{display:none;margin:22px auto 0;max-width:600px;background:#49313d;border:1px solid #6d4758;border-radius:18px;padding:18px;color:#fff}
+.secret.show{display:block;animation:pop .3s ease}
+footer{text-align:center;padding:35px 0 28px;color:#98868e;font-size:.9rem}
+footer b{color:var(--rose)}
+.confetti{position:fixed;pointer-events:none;z-index:10;animation:fall 1.5s linear forwards;font-size:22px}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-13px) rotate(4deg)}}
+@keyframes pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes fall{to{transform:translateY(110vh) rotate(500deg);opacity:0}}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:25px 0 45px;gap:26px}.art{min-height:300px}.heart{font-size:7rem}.cards{grid-template-columns:1fr}.card{padding:20px}nav{padding:16px 0}h1{letter-spacing:-1px}}
+</style>
 </head>
-
 <body>
-
-
-<!-- ================= HEADER ================= -->
-
-<header class="header">
-
-<div class="container nav">
-
-<a href="#home" class="logo">
-
-<strong>حديد</strong>
-
-<small>للتغليف والحماية</small>
-
-</a>
-
-
-<nav id="menu">
-
-<a href="#home">الرئيسية</a>
-
-<a href="#services">خدماتنا</a>
-
-<a href="#gallery">أعمالنا</a>
-
-<a href="#about">من نحن</a>
-
-<a href="#prices">الأسعار</a>
-
-<a href="#contact">تواصل معنا</a>
-
-</nav>
-
-
-<a
-href="tel:0920512607"
-class="nav-button">
-
-احجز الآن
-
-</a>
-
-
-<button
-id="menuBtn"
-aria-label="فتح القائمة">
-
-☰
-
-</button>
-
-</div>
-
-</header>
-
-
-
-<!-- ================= HERO ================= -->
-
-<section class="hero" id="home">
-
-<div class="container hero-grid">
-
-
-<div class="hero-text">
-
-<span class="badge">
-حديد للتغليف والحماية
-</span>
-
-
-<h1>
-
-حديد للتغليف
-
-<span>والحماية</span>
-
-</h1>
-
-
-<p>
-
-نمنح سيارتك مظهراً جديداً وحماية تدوم،
-مع جودة عالية وتنفيذ احترافي بأدق التفاصيل.
-
-</p>
-
-
-<div class="buttons">
-
-<a
-href="#services"
-class="btn primary">
-
-اكتشف خدماتنا
-
-</a>
-
-
-<a
-href="tel:0920512607"
-class="btn secondary">
-
-📞 0920512607
-
-</a>
-
-</div>
-
-
-<div class="stats">
-
+<div class="wrap">
+<nav><div class="brand">رويدا <span>♥</span></div><div class="pill">صُنع بحب وبشوية هبل 😂</div></nav>
+<main>
+<section class="hero">
 <div>
-
-<strong>+500</strong>
-
-<span>سيارة</span>
-
+<div class="eyebrow">💌 موقع رسمي جدًا… تقريبًا</div>
+<h1>إلى رويدا،<br>سبب الضحكة<br><em>والدوشة الحلوة.</em></h1>
+<p class="lead">مكان صغير معمول مخصوص ليكِ… فيه نكت بايخة لدرجة إنها تضحّك، وكلام حب أحلى من أي شوكولاتة. جهّزي نفسك يا رويدا 😌💗</p>
+<div class="actions"><button class="primary" onclick="newJoke();document.getElementById('jokes').scrollIntoView({behavior:'smooth'})">ضحّكيني يا موقع 😂</button><button class="secondary" onclick="showLove()">اضغطي لو بتحبّي المفاجآت 💌</button></div>
 </div>
-
-
-<div>
-
-<strong>+5</strong>
-
-<span>خدمات</span>
-
-</div>
-
-
-<div>
-
-<strong>★★★★★</strong>
-
-<span>جودة</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<div class="hero-image">
-
-<img
-id="heroImage"
-src="assets/images/hero.jpg"
-alt="حديد للتغليف والحماية"
-onerror="this.style.display='none';">
-
-</div>
-
-
-</div>
-
+<div class="art" aria-label="قلب وردي لطيف"><span class="spark sp1">✦</span><span class="spark sp2">✧</span><button type="button" class="heart" aria-label="افتح رسالة الحب" onclick="showLove()" style="background:transparent;border:0;padding:0;cursor:pointer">💗</button><div class="sticker s1">رويدا = ❤️‍🔥</div><div class="sticker s2">ضحكتك علاج مجاني 😂</div><div class="sticker s3">أحلى واحدة وخلاص.</div></div>
 </section>
-
-
-
-<!-- ================= SERVICES ================= -->
-
-<section
-class="section"
-id="services">
-
-<div class="container">
-
-
-<div class="section-title">
-
-<span>خدماتنا</span>
-
-<h2>
-خدمات حديد
-</h2>
-
-<p>
-كل ما تحتاجه سيارتك في مكان واحد.
-</p>
-
-</div>
-
-
-<div
-id="servicesContainer"
-class="services-grid">
-
-<div class="loading">
-جاري تحميل الخدمات...
-</div>
-
-</div>
-
-
-</div>
-
+<section id="jokes">
+<div class="section-head"><h2>ركن النكت اللي مالهاش حل 🤡</h2><p>لو ما ضحكتيش، هنعتبرها ابتسامة داخلية.</p></div>
+<div class="joke-box"><button type="button" class="joke-emoji" id="jokeEmoji" aria-label="غيّر النكتة" onclick="newJoke()" style="background:transparent;border:0;padding:0;cursor:pointer">🤣</button><div class="joke" id="jokeText">مرة واحد بخيل دخل مطعم… طلب المنيو وقالهم: هاتوا أشمّ بس!</div><div class="joke-actions"><button class="primary" onclick="newJoke()">هات نكتة تانية 🎲</button><button class="secondary" onclick="laugh()">ضحكت والله 😂</button></div><p id="laughCount" style="font-size:.9rem;color:#9a7e88;margin:16px 0 0">عدد الضحكات الوهمية: 0</p></div>
 </section>
-
-
-
-<!-- ================= GALLERY ================= -->
-
-<section
-class="section gallery-section"
-id="gallery">
-
-<div class="container">
-
-
-<div class="section-title">
-
-<span>
-معرض الأعمال
-</span>
-
-<h2>
-أعمال حديد
-</h2>
-
-<p>
-شاهد بعضاً من أعمالنا وتنفيذاتنا.
-</p>
-
+<section>
+<div class="section-head"><h2>حقائق علمية جدًا عن رويدا 🧪</h2><p>مصدر الدراسة: قلبي، ومفيش لجنة مراجعة.</p></div>
+<div class="cards">
+<div class="card"><div class="icon">📈</div><h3>نسبة الجمال</h3><p>وصلت لمستوى يخلي الكاميرا تقول: أنا مش مستعدة.</p></div>
+<div class="card"><div class="icon">🧠</div><h3>التأثير على المخ</h3><p>مجرد رسالة منها كفيلة تنسي الواحد هو كان داخل يعمل إيه.</p></div>
+<div class="card"><div class="icon">🫀</div><h3>حالة القلب</h3><p>يدق طبيعي… لحد ما اسم «رويدا» يظهر على الشاشة.</p></div>
 </div>
-
-
-<div
-id="galleryContainer"
-class="gallery">
-
-<div class="loading">
-جاري تحميل الصور...
-</div>
-
-</div>
-
-
-</div>
-
 </section>
-
-
-
-<!-- ================= ABOUT ================= -->
-
-<section
-class="section about"
-id="about">
-
-<div class="container">
-
-<span>
-من نحن
-</span>
-
-<h2>
-حديد للتغليف والحماية
-</h2>
-
-<p>
-
-نهتم بجمال سيارتك وحمايتها من خلال
-خدمات متخصصة وتنفيذ احترافي،
-مع الاهتمام بجودة الخامات وأدق التفاصيل.
-
-</p>
-
+<section><div class="love"><h2>طب بعيدًا عن الهزار… 💗</h2><p>يا رويدا، وجودك بيخلّي الأيام العادية ألطف، والضحكة أسهل، وأبسط الحاجات ليها معنى. حتى لو بهزر معاكي طول الوقت، فالحب اللي ورا الهزار حقيقي جدًا.</p><button onclick="showLove()">رسالة سرية ليكِ 💌</button><div class="secret" id="secret">يا رويدا، لو كان عندي زرار أخليكي تضحكي كل ما تزعلي، كنت حطيته في إيدك من زمان. إنتِ مش بس حبيبتي… إنتِ الشخص اللي نفسي أشاركه النكت البايخة، والأيام الحلوة، وحتى لحظات الصمت. بحبك يا أجمل صدفة وأحلى حكاية. 🥹❤️</div></div></section>
+</main>
+<footer>اتعمل بكل الحب ❤️ عشان <b>رويدا</b> — ممنوع الزعل، ومسموح الضحك بصوت عالي.</footer>
 </div>
-
-</section>
-
-
-
-<!-- ================= PRICES ================= -->
-
-<section
-class="section prices"
-id="prices">
-
-<div class="container">
-
-
-<div class="section-title">
-
-<span>
-الأسعار
-</span>
-
-<h2>
-أسعار خدماتنا
-</h2>
-
-</div>
-
-
-<div id="pricesContainer">
-
-<div class="loading">
-جاري تحميل الأسعار...
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- ================= CONTACT ================= -->
-
-<section
-class="section contact"
-id="contact">
-
-<div class="container contact-box">
-
-
-<div>
-
-<span>
-تواصل معنا
-</span>
-
-<h2>
-جاهز لتغيير سيارتك؟
-</h2>
-
-<p>
-اتصل بنا الآن واحجز موعدك.
-</p>
-
-</div>
-
-
-<div class="contact-buttons">
-
-
-<a
-href="tel:0920512607"
-class="btn primary">
-
-📞 اتصال
-
-</a>
-
-
-<a
-href="https://wa.me/218920512607"
-target="_blank"
-rel="noopener"
-class="btn whatsapp">
-
-واتساب
-
-</a>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- ================= WHATSAPP ================= -->
-
-<a
-href="https://wa.me/218920512607"
-target="_blank"
-rel="noopener"
-class="floating-whatsapp">
-
-واتساب
-
-</a>
-
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-<div class="container">
-
-<h3>
-حديد للتغليف والحماية
-</h3>
-
-<p>
-📞 0920512607
-</p>
-
-<p>
-© 2026 جميع الحقوق محفوظة
-</p>
-
-</div>
-
-</footer>
-
-
-
-<!-- ================= SUPABASE ================= -->
-
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+<script>
+const jokes=[
+["🤣","مرة واحد بخيل دخل مطعم… طلب المنيو وقالهم: هاتوا أشمّ بس!"],
+["😂","واحد راح للدكتور قاله: كل ما أشرب شاي عيني توجعني… قاله: جرّب تطلع المعلقة من الكوباية يا نجم."],
+["🥲","مرة كمبيوتر اتجوز كمبيوتر… خلفوا توأم، سمّوهم ويندوز 1 وويندوز 2."],
+["🤓","واحد كسلان جدًا، حلم إنه بيشتغل… صحِي من النوم أخد إجازة."],
+["🐔","فرخة دخلت محل موبايلات قالتله: عندك شبكة؟ قالها: أيوه. قالتله: طب ناديلها الديك."],
+["😅","مرة واحد سأل صاحبه: إيه أسرع حاجة في الدنيا؟ قاله: المرتب… لسه نازل لقيته اختفى."],
+["🫠","واحد اشترى ساعة ضد الميه… عطش، شربها."],
+["🤡","مرة نملة اتجوزت فيل… يوم الفرح قالتله: تعالى نمشي على أطراف صوابعنا عشان محدش يحس بينا."],
+["💘","سألت قلبي: ليه بتدق بسرعة لما رويدا تبعت؟ قال: يا عم ركّز في شغلك، دي المديرة."],
+["🥹","إيه الفرق بين القمر ورويدا؟ القمر بيطلع بالليل… رويدا بتنور اليوم كله."]
+];
+let count=0;
+function newJoke(){let current=document.getElementById('jokeText').textContent;let pool=jokes.filter(j=>j[1]!==current);let j=pool[Math.floor(Math.random()*pool.length)];document.getElementById('jokeEmoji').textContent=j[0];document.getElementById('jokeText').textContent=j[1]}
+function laugh(){count++;document.getElementById('laughCount').textContent='عدد الضحكات الوهمية: '+count;confetti();let b=document.querySelector('#jokes .joke-actions .secondary');b.textContent=['ضحكت والله 😂','ضحكة من القلب 🥹','خلاص بطني وجعتني 🤣'][count%3]}
+function showLove(){const s=document.getElementById('secret');s.classList.toggle('show');if(s.classList.contains('show'))confetti()}
+function confetti(){const bits=['💗','💖','✨','😂','💕','🌸'];for(let i=0;i<18;i++){let e=document.createElement('span');e.className='confetti';e.textContent=bits[Math.floor(Math.random()*bits.length)];e.style.left=Math.random()*100+'vw';e.style.top='-30px';e.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),2100)}}
+
+// تفعيل إضافي للأزرار عند تحميل الصفحة، مع الحفاظ على دعم الضغط بلوحة المفاتيح.
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('button').forEach((button) => {
+    button.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        // الأزرار الأصلية تتعامل مع Enter/Space تلقائيًا؛ لا نمنع السلوك الافتراضي.
+      }
+    });
+  });
+});
 </script>
-
-<script src="script.js"></script>
-
-
 </body>
-
 </html>
